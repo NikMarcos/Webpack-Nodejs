@@ -156,8 +156,6 @@ $(document).ready(function() {
           friendsArray.push(pageOwner)
           localStorage.setItem('friends', JSON.stringify(friendsArray));
           avatarBtn.html('Удалить из друзей');
-          // avatarBtn.removeClass('addUserBtn');
-          // avatarBtn.addClass('deleteFromFriends');
         }
       })
       .catch((error) => {
@@ -181,46 +179,11 @@ $(document).ready(function() {
           });
           localStorage.setItem('friends', JSON.stringify(filteredFriends));
           avatarBtn.html('Добавить в друзья');
-          // avatarBtn.removeClass('deleteFromFriends');
-          // avatarBtn.addClass('addUserBtn');
         }
       })
       .catch((error) => {
         console.log(err);
       })
     }
-
   })
-
-  // $( '.deleteFromFriends' ).click((e) => {
-  //   e.preventDefault();
-  //   let userLogin = $( '.addUser' ).val();
-  //   let options = {
-  //     method: 'POST',
-  //     body: JSON.stringify({ userLogin }),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   };
-  //   fetch('/user/deleteFriend', options)
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     if (json.ok == 1) {
-  //       let friendsArray = JSON.parse(localStorage.getItem('friends'));
-  //       let filteredFriends = friendsArray.filter(function(elem){
-  //         return elem != userLogin;
-  //       });
-  //       localStorage.setItem('friends', JSON.stringify(filteredFriends));
-  //       avatarBtn.html('Добавить в друзья');
-  //       avatarBtn.removeClass('deleteFromFriends');
-  //       avatarBtn.addClass('addUserBtn');
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.log(err);
-  //   })
-  // })
-
-
-
 });
