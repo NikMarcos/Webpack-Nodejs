@@ -1,0 +1,65 @@
+extends ../layouts/main
+
+block head
+  link(rel='stylesheet', href='/assets/css/signup.css')
+  script(type="text/javascript", src='/assets/js/signup.js')
+
+block content
+  .signup_container
+    .auth_reg_forms
+      .reg_form
+        h3.form_name
+          | Регистрация
+        form(action="/sign_up", method="post")
+          label(for="login") Логин
+          br      
+          input(type="text", name="login", id="login", placeholder="Логин")
+          br
+          br
+          label(for="name") Имя
+          br
+          input(type="text", name="name", id="name", placeholder="Имя")
+          br
+          br
+          label(for="email") Эл.почта
+          br
+          input(type="text", name="email", id="email", placeholder="Эл.почта")
+          br
+          br
+          label(for="phone_number") Номер телефона
+          br
+          input(type="text", name="phone_number", id="phone_number", placeholder="Номер телефона")
+          br
+          br
+          label(for="pass") Пароль
+          br
+          input(type="text", name="pass", id="pass", placeholder="Пароль")
+          br
+          br
+          label(for="conf_pass") Подтверждение
+          br
+          input(type="text", name="conf_pass", id="conf_pass", placeholder="Подтвердите пароль")
+          br
+          button(type="submit" class="button") Зарегестрироваться
+          br
+          span или
+          br
+          button(type="button" class="button toggle_opacity_auth") Войти
+      .auth_form
+        h3.form_name
+          | Вход
+        form(action="/sign_in/", method="post")
+          label(for="login") Логин
+          br
+          input(type="text", name="login", id='login', placeholder="Логин")
+          br
+          br
+          label(for="pass") Пароль
+          br 
+          input(type="text", name="pass", id='pass', placeholder="Пароль")
+          br
+          button(type="submit", name="button", class="button") Войти
+          br
+          span или
+          br
+          button(type="button" class="button toggle_opacity_reg") Зарегестрироваться

@@ -1,0 +1,83 @@
+extends ../layouts/main
+
+block head
+  link(rel='stylesheet', href='/assets/css/user.css')
+  script(type="text/javascript", src='/assets/js/user.js').
+
+block content  
+  .box
+    .all_data
+      svg
+        defs
+          clipPath(id='clipFriends')
+            circle(class='svgCircle' cx='49.5%' cy='0' r='50')
+      .friends
+          .friendsTitle
+            | Друзья
+          .friends_list
+            //- - let friends = user.friends;
+            - if (friends)
+              - for (let i = 0; i < friends.length; i++)
+                a(href='/user/' + friends[i]) #{friends[i]}
+      .ava
+        .ava_image
+          if avatar
+           img.first_img(src= '/images/' + avatar[0].file alt="Аватар")
+          else
+            img.first_img(src='/assets/images/inkognito.jpg' alt="Image Title")
+        if login == user.login
+          button.change.avaBtnStyle(type="button" name="changeAvatar") Сменить аватар
+        else 
+          form
+            input.addUser(type='hidden' value= user.login)
+            button.addUserBtn.avaBtnStyle(type="button" name="changeAvatar") Добавить в друзья
+      .person
+        .name
+          strong
+            | Имя: 
+          | #{user.name}
+        br
+        .email
+          strong.login(data-login= user.login)
+            | Логин: 
+          | #{user.login}
+        br
+        .location
+          strong
+            | Эл.почта: 
+          | #{user.email}
+      .image_form
+        if login == user.login
+          form(class='saveForm' method='post' action='/image/save' enctype='multipart/form-data')
+            input(type='hidden' class='id' name='id' value= user._id)
+            input(type="file" id='imageFile' name="image")
+            br
+            button(class='imageBtn button') Сохранить
+        else
+          span.text
+            | Вы можете добавить этого пользователя в друзья,
+            | нажав кнопку на аватаре
+      .images
+        - for (let i=0; i<5; i++)
+          - if (images[i])
+            img.first_img(src= '/assets/images/' + images[i].file alt="Аватар")
+    .images_popup
+      .cross
+        svg
+          path(d="M0 0 L 20 20 M20 0 L 0 20" stroke="white" stroke-width="3")
+      each image in images
+          div.image_container(data-imageName= image.file data-imageId= image._id data-userid= user._id)
+            img.first_img(src= '/assets/images/' + image.file alt="Аватар")
+            .cross.delete(data-image= image.file data-userid= user._id)
+              svg#cross
+                path#path(d="M0 0 L 20 20 M20 0 L 0 20" stroke="pink" stroke-width="3")
+    .user_text
+      <div id="app">
+        <div class="glitch" data-text="Обо мне">Обо мне</div>
+      </div>
+      | Donec vel augue elit. Praesent a ipsum lorem. Sed sapien nulla, egestas ut suscipit eu, cursus eget turpis. Proin scelerisque, nunc ac efficitur venenatis, lacus augue pharetra sem, nec feugiat erat nisl at risus. Sed placerat vestibulum pellentesque. Nunc lacus risus, condimentum ut nibh id, efficitur malesuada nisi. Integer hendrerit urna a consequat viverra. Praesent dictum lacus ac pulvinar gravida. Pellentesque euismod sapien in orci aliquet efficitur. Cras at metus metus. Morbi gravida tortor non quam porttitor, quis commodo metus suscipit.
+      | Cras rhoncus velit ante, eu pretium arcu feugiat a. Curabitur ultrices ante erat, quis gravida eros condimentum non. Donec quis mi posuere, euismod ante at, vehicula diam. Morbi pharetra ligula lectus, sit amet gravida dolor posuere ut. Nam blandit ac odio sit amet gravida. Quisque fermentum eleifend dolor eu efficitur. Etiam euismod odio nec tincidunt venenatis. Praesent metus enim, aliquet non porta ut, laoreet et ligula. Maecenas tempor ligula vitae lacinia tristique. Morbi non finibus lacus. Etiam ligula leo, ultricies ac mauris quis, bibendum pharetra neque. Donec et laoreet nunc, vitae mattis mauris. Etiam a purus quis urna vehicula imperdiet ut vel urna. Donec id dolor nulla. Donec dolor sapien, blandit ut mi sit amet, blandit facilisis justo. Donec porttitor commodo sapien sit amet pellentesque.
+      | Ut tempor rhoncus neque eget volutpat. Vestibulum convallis eleifend enim id suscipit. Sed ultrices maximus metus, nec molestie ligula porta ac. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer viverra elementum ornare. Aliquam volutpat eros id suscipit pharetra. Curabitur quis facilisis ante, eget malesuada orci. Aliquam ultricies velit ipsum, ac pulvinar mi gravida sed. Nullam dictum ante id erat congue, vel aliquam ante placerat. Duis ut risus malesuada, suscipit lectus ac, pulvinar ligula. Duis ultricies nec massa eget volutpat. Ut nec erat risus. Integer at diam pretium, egestas massa et, viverra libero.
+      | Donec vel augue elit. Praesent a ipsum lorem. Sed sapien nulla, egestas ut suscipit eu, cursus eget turpis. Proin scelerisque, nunc ac efficitur venenatis, lacus augue pharetra sem, nec feugiat erat nisl at risus. Sed placerat vestibulum pellentesque. Nunc lacus risus, condimentum ut nibh id, efficitur malesuada nisi. Integer hendrerit urna a consequat viverra. Praesent dictum lacus ac pulvinar gravida. Pellentesque euismod sapien in orci aliquet efficitur. Cras at metus metus. Morbi gravida tortor non quam porttitor, quis commodo metus suscipit.
+      | Cras rhoncus velit ante, eu pretium arcu feugiat a. Curabitur ultrices ante erat, quis gravida eros condimentum non. Donec quis mi posuere, euismod ante at, vehicula diam. Morbi pharetra ligula lectus, sit amet gravida dolor posuere ut. Nam blandit ac odio sit amet gravida. Quisque fermentum eleifend dolor eu efficitur. Etiam euismod odio nec tincidunt venenatis. Praesent metus enim, aliquet non porta ut, laoreet et ligula. Maecenas tempor ligula vitae lacinia tristique. Morbi non finibus lacus. Etiam ligula leo, ultricies ac mauris quis, bibendum pharetra neque. Donec et laoreet nunc, vitae mattis mauris. Etiam a purus quis urna vehicula imperdiet ut vel urna. Donec id dolor nulla. Donec dolor sapien, blandit ut mi sit amet, blandit facilisis justo. Donec porttitor commodo sapien sit amet pellentesque.
+      | Ut tempor rhoncus neque eget volutpat. Vestibulum convallis eleifend enim id suscipit. Sed ultrices maximus metus, nec molestie ligula porta ac. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer viverra elementum ornare. Aliquam volutpat eros id suscipit pharetra. Curabitur quis facilisis ante, eget malesuada orci. Aliquam ultricies velit ipsum, ac pulvinar mi gravida sed. Nullam dictum ante id erat congue, vel aliquam ante placerat. Duis ut risus malesuada, suscipit lectus ac, pulvinar ligula. Duis ultricies nec massa eget volutpat. Ut nec erat risus. Integer at diam pretium, egestas massa et, viverra libero.

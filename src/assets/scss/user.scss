@@ -1,0 +1,349 @@
+.content{
+  background-image: url('/assets/images/for_user.jpg') !important;
+  background-position: center;
+  border: 1px solid black;
+}
+
+.all_data{
+  display: grid;
+  grid-template-columns: 250px repeat(2, minmax(100px, 1fr)) 1fr;
+  grid-template-rows: 200px 170px;
+  grid-template-areas:
+  'ava person person saveImage'
+  'image image image image';
+  width: 80%;
+  height:auto;
+  position: relative;
+  padding: 10px;
+  margin: 10px auto;
+  box-sizing: border-box;
+  background-color: lightgrey;
+  border-radius: 20px;
+  overflow: hidden;
+  .ava, .person, .images, .image_form{
+    background-color: #EAFAF1;
+
+  }
+
+  .friends{
+    width: 100%;
+    height: calc(100% - 20px);
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    z-index: 5;
+    background-color: lightgreen;;
+    clip-path: url('#clipFriends');
+    overflow-y: auto;
+    .friendsTitle{
+      margin: 10px auto 50px auto;
+      cursor: pointer;
+    }
+  }
+
+.friends_list{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  height: 85%;
+  a{
+    display: block;
+    margin: 20px;
+    width: 20%;
+  }
+}
+
+
+svg{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.svgCircle{
+  transition: all 1s;
+}
+
+
+.hideButton{
+    pointer-events: none;
+}
+
+.ava{
+  grid-area: ava;
+  position: relative;
+  height: 200px;
+  padding: 10px;
+  text-align: center;
+  margin-right: 10px;
+  border-radius: 20px 0 0 20px;
+  box-sizing: border-box;
+  img{
+    height: 180px;
+    max-width: 200px;
+    border-radius: 20px;
+  }
+  .avaBtnStyle{
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    // z-index: 2;
+    transform: translateX(50%);
+    opacity: 0.3;
+    border-radius: 0 0 0 20px;
+    background-color: #D6EAF8;
+    transition: 0.5s;
+  }
+  .avaBtnStyle:hover{
+    opacity: 0.7;
+  }
+}
+
+.person{
+  grid-area: person;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items:flex-start;
+  height: 200px;
+  padding-left: 10px;
+  @media screen and (max-width: 1025px){
+    justify-content: center;
+  }
+
+}
+
+.person-image-block{
+  width: 80%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+
+}
+
+.image_form{
+  grid-area: saveImage;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 20px 20px 0;
+  z-index: 3;
+  box-sizing: border-box;
+  padding: 10px;
+  .text{
+    font-size: 2vw;
+    text-align:center;
+  }
+}
+
+.images{
+  grid-area: image;
+  width: 100%;
+  margin: 10px auto 0 auto;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 3;
+  img{
+    height: 130px;
+    width: 200px;
+    margin: 0 5px;
+  }
+}
+}
+
+.images_popup{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+width: 60%;
+height: 60%;
+opacity: 0;
+overflow-y: scroll;
+z-index: -1;
+position: absolute;
+top: 30%;
+left: 20%;
+background-color: black;
+border-radius: 10px;
+padding: 50px;
+transition: opacity 1s, z-index 1s;
+box-sizing: border-box;
+.image_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  #cross:hover #path{
+    stroke: red;
+  }
+}
+.image_container > img{
+  height: 200px;
+  width: 200px;
+  margin: 20px 20px;
+  border: 5px solid grey;
+  // box-sizing: border-box;
+  border-radius: 10px;
+}
+
+
+
+
+  .cross{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    svg{
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .delete{
+    top: 30px;
+    right: 30px;
+  }
+}
+
+.user_text{
+  width: 80%;
+  margin: auto;
+  text-align: justify;
+}
+
+// Glitch stylesheet
+#app{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 100px;
+}
+
+
+.glitch{
+  position: relative;
+  &:after, &:before{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+
+  }
+}
+
+.glitch:after{
+  left: -1px;
+  text-shadow: -2px 0 #ff00c1;
+  clip: rect(44px, 500px, 56px, 0);
+  animation: glitch-after 5s infinite linear alternate-reverse;
+}
+
+.glitch:before{
+
+  left: 1px;
+  text-shadow: 2px 2px #00fff9;
+  clip: rect(30px, 500px, 55px, 0);
+  animation: glitch-before 5s infinite linear alternate;
+}
+
+#i_span{
+  animation: glitch-i 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-before {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{percentage($i*(1/$steps))} {
+      @if $i % 2 == 0 {
+        left: -1px;
+        clip: rect(30px, 500px, 55px, 0);
+      } @else if $i*(1/$steps) == 40% {
+        clip: rect(30px, 500px, 55px, random(50)+px);
+      } @else {
+        left: random(5)+px;
+        clip: rect(random(100)+px, 500px, random(100)+px, 0);
+        // transform: skew((random(100) / 100) + deg);
+      }
+      // left: -random(20)+px;
+      // clip: rect(random(100)+px, 300px, random(100)+px, 0);
+			// transform: skew((random(100) / 100) + deg);
+    }
+  }
+}
+
+@keyframes glitch-after {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{percentage($i*(1/$steps))} {
+      @if $i % 2 == 0 {
+        left: -1px;
+        clip: rect(44px, 500px, 56px, 0);
+      } @else if $i*(1/$steps) == 40% {
+        clip: rect(44px, 500px, 56px, random(50)+px);
+      } @else {
+        left: random(5)+px;
+        clip: rect(random(100)+px, 500px, random(100)+px, 0);
+  			// transform: skew((random(100) / 100) + deg);
+      }
+    }
+  }
+}
+
+@keyframes glitch-i {
+  $color_black: black;
+  $color_green: #08F0C2 ;
+  $steps: 5;
+  0%{
+    color: $color_black
+  }
+  10%{
+    color: $color_green
+  }
+  15%{
+    color: $color_black
+  }
+  40%{
+    color: $color_black
+  }
+  70%{
+    color: $color_green
+  }
+  80%{
+    color: $color_black
+  }
+  100%{
+    color: $color_black
+  }
+
+  // @for $i from 0 through $steps {
+  //   #{percentage($i*(1/$steps))} {
+  //     color: lighten(#046854,random(10));
+  //   }
+  // }
+}

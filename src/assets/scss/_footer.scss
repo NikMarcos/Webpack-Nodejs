@@ -1,0 +1,35 @@
+.footer{
+  background: linear-gradient(135deg, #12BCB0 20%, #FABE0E 70%);
+  height: 130px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: 1fr;
+  color: white;
+
+  &:first-child{
+    border-left: 0;
+  }
+
+  & > * {
+    border-left: 1px solid black;
+    box-sizing: border-box;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  .name{
+    font-size: 25px;
+    margin: 10px 0;
+  }
+
+  .center{
+    a{
+      color: white;
+      text-decoration: none;
+      padding: 30px 10px;
+    }
+    @media screen and (max-width: 1000px) {
+      display: none;
+    }
+  }
+}

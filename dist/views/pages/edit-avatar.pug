@@ -1,0 +1,22 @@
+extends ../layouts/main
+
+block head
+  link(rel='stylesheet', href='/assets/css/editAvatar.css')
+  script(type="text/javascript", src='/assets/js/editAvatar.js').
+
+block content  
+  .common
+    span.notice
+      | Выберите область изображения, которая будет отображаться в качестве аватара 
+    div.temp
+      div.edit(style="--bg-image: url('/images/" + image + "');")
+      svg#svg
+        defs
+          clipPath(id="cut-off-image")
+            rect#rect(x='0' y='0')
+      img.imageName(src="/images/" + image)
+      form(method='POST' action='/image/update/')
+        input.coordX(type="hidden", value=0, name='coordX')
+        input.image(type="hidden", value= image, name='image')
+        input.id(type="hidden", value=user, name='id')
+        button.sendCoord.button(type='submit') Создать аватар

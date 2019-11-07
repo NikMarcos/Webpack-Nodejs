@@ -1,0 +1,15 @@
+block variables
+  include var
+
+doctype html
+html(lang='en')
+  head
+    title #{title}
+    block head
+    script(src='/assets/js/vendors.js')
+  body(class=pageClass)
+    .content
+      include header
+      block content
+      include footer
+    

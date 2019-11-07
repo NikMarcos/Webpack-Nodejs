@@ -1,0 +1,29 @@
+extends ../layouts/main
+
+block head
+  link(rel='stylesheet', href='/assets/css/users.css')
+  script(type="text/javascript", src='/assets/js/users.js')
+
+block content
+  .cont_users
+    .head
+      | Список пользователей сайта 
+    .users
+      each user in users
+        .user
+          .avatar
+            if user.images.length
+             img.first_img(src= '/images/' + user.images[0].file alt="Аватар")
+            else
+              img.first_img(src='/assets/images/inkognito.jpg' alt="Image Title")
+          .person
+            strong
+              | Имя: 
+            | #{user.name} 
+            br
+            strong
+              | Эл.почта: 
+            | #{user.email}
+          .to_acc
+            | &nbsp;
+            a(href='user/' + user.login) Перейти

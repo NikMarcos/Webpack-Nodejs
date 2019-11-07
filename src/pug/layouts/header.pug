@@ -1,0 +1,34 @@
+header
+  .header
+    .search_box
+      p
+        | Поиск
+      input(type='text')
+    .nav_box
+      a(href='#') Дом
+      a(href='#') О нас
+      if login
+        a(href='/user/' + login) Мой аккаунт
+      a(href='/users/') Все пользователи
+      if login
+        a(href='/sign_out/') Выйти
+      else
+        a(href='/sign_in/') Войти
+        a(href='/sign_up/') Регистрация
+    .add_nav_box
+      a(href='#') Дом
+      a(href='#') О нас
+      if login
+        a(href='/user/' + login) Мой аккаунт
+      a(href='/users/') Все пользователи
+      if login
+        a(href='/sign_out/') Выйти
+      else
+        a(href='/sign_in/') Войти
+        a(href='/sign_up/') Регистрация
+    .gamb
+      .line
+      .line
+      .line
+      
+      

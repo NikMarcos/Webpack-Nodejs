@@ -1,0 +1,143 @@
+.cont{
+  background-color: #f4f4f4;
+}
+.welcome{
+  position: relative;
+  height: 500px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 20px;
+  background-image: url('/assets/images/welcome-left.png');
+  background-position: center;
+  // background-repeat: no-repeat;
+  background-size: cover;
+  @media screen and (max-width: 950px) {
+    width: 950px;
+  }
+
+  .left{
+    position: absolute;
+    left: 10px;
+    align-self: flex-start;
+    box-sizing: border-box;
+    padding-left: 10px;
+    z-index: 5;
+    // margin-right: 10px;
+    p{
+      transform: translateY(-15px);
+      font-size: 40px;
+      text-align: left;
+      font-weight: bold;
+    }
+  }
+
+  .right{
+    position: absolute;
+    right: 30px;
+    align-self: flex-end;
+    box-sizing: border-box;
+
+    p{
+      font-size: 40px;
+      text-align: right;
+      font-weight: bold;
+    }
+  }
+
+
+}
+
+.images_block{
+  // align-self: center;
+  top: 220px;
+  position: absolute;
+  // @media screen and (max-width: 930px) {
+  //   top: 220px;
+  // }
+
+  z-index: 2;
+  .first_img{
+    position: relative;
+    top: -45px;
+    left: 500px;
+    width: 180px;
+
+  }
+  .second_img{
+    position: relative;
+    right: -5px;
+    width: 220px;
+    top: 20px;
+  }
+  .third_img{
+    height: 70px;
+    position: relative;
+    top: -45px;
+    right: 95px;
+  }
+  .four_img{
+    width: 150px;
+    position: relative;
+    top: -45px;
+    right: 440px;
+  }
+  .five_img{
+    height: 60px;
+    position: relative;
+    top: 20px;
+    right: 330px;
+  }
+
+}
+
+
+.about{
+  background: linear-gradient(to right,#EAFAF1  10%, #FBEEE6);
+  font-family: Verdana;
+  padding: 10px;
+  text-align: justify;
+  box-sizing: border-box;
+  .grad{
+    // background: linear-gradient(to left, #eee, red);
+    // background-clip: text;
+    // -webkit-text-fill-color: transparent;
+    // font-weight: bold;
+    // border: 1px solid black;
+
+    font-family: 'Rubik One', sans-serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    background: #2E2F45;
+    margin: 20px auto;
+    color: white;
+    border-radius: 5px;
+    mix-blend-mode: multiply;
+    padding: 5px 10px;
+    box-sizing: border-box;
+  }
+  p{
+    width: 100%;
+  }
+
+  .first_p_img{
+    width: 550px;
+    margin: 12px 8px 0 0;
+    float: left;
+  }
+
+  .second_p_img{
+    width: 520px;
+    margin: 12px 0 5px 5px;
+    float: right;
+  }
+
+  .third_p_img{
+    width: 600px;
+    margin: 12px 0 2px 6px;
+    float: right;
+  }
+}
