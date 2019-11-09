@@ -21,7 +21,7 @@ block content
                 a(href='/user/' + friends[i]) #{friends[i]}
       .ava
         .ava_image
-          if avatar
+          if avatar.length
            img.first_img(src= '/images/' + avatar[0].file alt="Аватар")
           else
             img.first_img(src='/assets/images/inkognito.jpg' alt="Image Title")

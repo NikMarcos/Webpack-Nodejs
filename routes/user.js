@@ -3,6 +3,10 @@ const router = express.Router();
 const { images } = require('../models/images.js');
 const { User } = require('../models/user.js');
 const mongoose = require('mongoose');
+const fs = require('fs');
+
+const srcImage = './uploads/images/';
+const desPath = './uploads/images/small/';
 
 router.post('/friends', function(req, res, next) {
   User.findOne({ login: req.session.userLogin }, 'friends')
@@ -15,9 +19,40 @@ router.post('/friends', function(req, res, next) {
   })
 });
 
+router.get('/delete/', (req, res) => {
+  if (req.session.userId ) {
+    let id = req.session.userId;
+    console.log(id);
+    User.findOneAndDelete({ _id: id})
+    .then((user) => {
+      let userImagesIds = user.images;
+      for(let imageId of userImagesIds) {
+        images.findOneAndDelete({ _id: imageId})
+        .then((imageObj) => {
+          let image_name = imageObj.file;
+          let largeImagePath = srcImage + image_name;
+          let smallImagePath = desPath + image_name;
+          fs.unlinkSync(largeImagePath);
+          fs.unlinkSync(smallImagePath);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+      }
+    })
+    .then((result) => {
+      res.redirect('/sign_out');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  } else {
+    res.render( 'signin', { flash: "Вам нужно авторизоваться." });
+  }
+});
+
 /* GET users listing. */
 router.get('/:login', function(req, res, next) {
-    // console.log(req.session.userLogin);
   let rawLogin = req.params.login;
   User.find({ login: rawLogin })
   .populate({ path: 'images', match: { isAvatar: true }})

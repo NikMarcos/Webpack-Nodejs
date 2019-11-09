@@ -28,13 +28,9 @@ app.set('views', path.join(__dirname, './dist/views/pages/'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-// app.use(express.json());
-
- // handle json data
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, './dist/assets/images/')));
 app.use(express.static(path.join(__dirname, './dist/')));
 app.use(express.static(path.join(__dirname, './uploads/')));
 app.use(cors());
@@ -56,20 +52,13 @@ app.use(session({
 }));
 
 app.use('/', function (req, res, next) {
-
   let url = req.originalUrl;
   res.locals.path = url;
-  console.log(res.locals.path);
   if (req.session.userLogin) {
     res.locals.login = req.session.userLogin;
   }
-  // if (req.session.userName && req.session.userEmail) {
-  //   res.locals.regstatus = 'true';
-  //   next();
-  // } else {
   res.cookie('userLogin', req.session.userLogin);
   next();
-  // }
 });
 
 app.use('/', indexRouter);

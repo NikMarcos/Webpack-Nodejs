@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { createUser } = require('../queries');
 const Joi = require('@hapi/joi');
 const { registration_schema } = require('../validation');
 const { User } = require('../models/user.js');

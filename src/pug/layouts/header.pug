@@ -1,14 +1,18 @@
 header
   .header
+    if (path === '/users/')
     .search_box
       p
         | Поиск
-      input(type='text')
+      input.usersSearch(type='text')
     .nav_box
-      a(href='#') Дом
+      a(href='/') Дом
       a(href='#') О нас
       if login
-        a(href='/user/' + login) Мой аккаунт
+        if (path === '/user/' + login)
+          a(href='/user/delete/') Удалить аккаунт
+        else
+          a(href='/user/' + login) Мой аккаунт
       a(href='/users/') Все пользователи
       if login
         a(href='/sign_out/') Выйти

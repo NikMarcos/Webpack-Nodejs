@@ -17,8 +17,9 @@ router.post('/', function(req, res) {
     .then(( resp ) => {
       bcrypt.compare(password, resp[0].password, function(err, response) {
         if (response == true) {
+          console.log(resp[0]);
           req.session.userLogin = resp[0]['login'];
-          req.session.userEmail = resp[0]['email'];
+          req.session.userId = resp[0]['_id'];
           res.redirect('/');
         } else {
           console.log("Ошибка: " + resp);

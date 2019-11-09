@@ -44,8 +44,6 @@ $(document).ready(function() {
     let friendsArray = JSON.parse(localStorage.getItem('friends'));
     if(friendsArray.includes(pageOwner)){
       avatarBtn.html('Удалить из друзей');
-      // avatarBtn.removeClass('addUserBtn');
-      // avatarBtn.addClass('deleteFromFriends');
     }
   }
 
