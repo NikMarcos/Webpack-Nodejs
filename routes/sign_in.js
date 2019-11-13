@@ -3,13 +3,15 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../models/user.js');
 const mongoose = require('mongoose');
+const csrf = require('csurf')
+const csrfProtection = csrf({ cookie: true });
 
-router.get('/', (req, res) => {
-  res.render('signin');
+router.get('/', csrfProtection, (req, res) => {
+  res.render('signin', {csrfToken: req.csrfToken()});
 })
 
 /* User auth */
-router.post('/', function(req, res) {
+router.post('/', csrfProtection, function(req, res) {
   let login = req.body.login.trim().toLowerCase();
   let password = req.body.pass;
     // getUserByLogin(req.app.locals.db, login)
@@ -23,7 +25,7 @@ router.post('/', function(req, res) {
           res.redirect('/');
         } else {
           console.log("Ошибка: " + resp);
-          res.render('signin', {flash: "Неверный логин или пароль"});
+          res.render('signin', {flash: "Неверный логин или пароль", csrfToken: req.csrfToken()});
         }
       });
     });

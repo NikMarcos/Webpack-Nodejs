@@ -56,18 +56,25 @@ router.get('/:login', function(req, res, next) {
   let rawLogin = req.params.login;
   User.find({ login: rawLogin })
   .populate({ path: 'images', match: { isAvatar: true }})
-  .then(( response ) => {
-    if (response) {
-      images.find({ owner: response[0]._id }).then(( resp ) => {
-        res.render( 'user', {
-          title: 'Express me',
-          user: response[0],
-          avatar: response[0].images,
-          images: resp
-        });
+  .then(( responseUser ) => {
+    if (responseUser) {
+      images.find({ owner: responseUser[0]._id }).then(( resp ) => {
+        let friends = responseUser[0].friends;
+          User.find({ login: {$in: friends}})
+          .populate({ path: 'images', match: { isAvatar: true }})
+          .then(( responseFriends ) => {
+            console.log(responseFriends);
+            res.render( 'user', {
+              title: 'Express me',
+              user: responseUser[0],
+              avatar: responseUser[0].images,
+              images: resp,
+              friends: responseFriends
+            });
+          });
+
       });
     }
-
 
   })
 });

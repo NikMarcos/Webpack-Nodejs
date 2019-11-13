@@ -5,13 +5,15 @@ const { registration_schema } = require('../validation');
 const { User } = require('../models/user.js');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const csrf = require('csurf')
+const csrfProtection = csrf({ cookie: true });
 
-router.get('/', (req, res) => {
-  res.render('signup');
+router.get('/', csrfProtection, (req, res) => {
+  res.render('signup', {csrfToken: req.csrfToken()});
 });
 
 /* User registration */
-router.post('/',  async (req, res, next) => {
+router.post('/', csrfProtection,  async (req, res, next) => {
   let data = req.body;
   const { error, value } = await registration_schema.validate(data);
   console.log(error);
@@ -28,14 +30,14 @@ router.post('/',  async (req, res, next) => {
 
     userData.save().then((resp) => {
       if( resp ) {
-        res.render('signin', {flash: "Вы успешно зарегестрированы. Пожалуйста, авторизуйтесь."});
+        res.render('signin', {flash: "Вы успешно зарегестрированы. Пожалуйста, авторизуйтесь.", csrfToken: req.csrfToken()});
       } else {
         console.log("Ошибка: " + resp);
-        res.render('signup', {flash: "Пользователь с таким логином уже существует. Пожалуйста, придумайте другой логин"});
+        res.render('signup', {flash: "Пользователь с таким логином уже существует. Пожалуйста, придумайте другой логин", csrfToken: req.csrfToken()});
       }
     });
   } else {
-    res.render('signup', {flash: "Пароли не совпадают"});
+    res.render('signup', {flash: "Пароли не совпадают", csrfToken: req.csrfToken()});
   }
 });
 

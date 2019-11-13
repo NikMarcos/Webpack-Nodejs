@@ -25,6 +25,7 @@ block content
           label(for="pass") Пароль
           br 
           input(type="text", name="pass", id='pass', placeholder="Пароль")
+          input(type="hidden" name="_csrf" value= csrfToken)
           br
           button(type="submit", name="button", class="button") Войти
       .reg_form
@@ -46,11 +47,6 @@ block content
           input(type="text", name="email", id="email", placeholder="Эл.почта")
           br
           br
-          label(for="phone_number") Номер телефона
-          br
-          input(type="text", name="phone_number", id="phone_number", placeholder="Номер телефона")
-          br
-          br
           label(for="pass") Пароль
           br
           input(type="text", name="pass", id="pass", placeholder="Пароль")
@@ -59,5 +55,6 @@ block content
           label(for="conf_pass") Подтверждение
           br
           input(type="text", name="conf_pass", id="conf_pass", placeholder="Подтвердите пароль")
+          input(type="hidden" name="_csrf" value= csrfToken)
           br
           button(type="submit" class="button") Отправить

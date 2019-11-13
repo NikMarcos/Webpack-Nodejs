@@ -21,6 +21,8 @@ const registration_schema = Joi.object({
     email: Joi.string()
         .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'ru'] } })
         .required(),
+
+    _csrf: Joi.string()
 })
     .with('pass', 'conf_pass');
 

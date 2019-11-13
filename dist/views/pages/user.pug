@@ -12,13 +12,17 @@ block content
           clipPath(id='clipFriends')
             circle(class='svgCircle' cx='49.5%' cy='0' r='50')
       .friends
-          .friendsTitle
-            | Друзья
-          .friends_list
-            - let friends = user.friends;
-            - if (friends)
-              - for (let i = 0; i < friends.length; i++)
-                a(href='/user/' + friends[i]) #{friends[i]}
+        .friendsTitle
+          | Друзья
+        .friends_list
+          - if (friends)
+            - for (let i = 0; i < friends.length; i++)
+              .friend(style='border:1px solid red;')
+                .avatar
+                  - let friendAvatar = friends[i].images[0].file;
+                  img.friendAvatar(src='/images/small/' + friendAvatar)
+                .linkToFriend
+                  a(href='/user/' + friends[i].login) #{friends[i].login}
       .ava
         .ava_image
           if avatar.length

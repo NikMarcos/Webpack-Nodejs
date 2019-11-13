@@ -6,7 +6,7 @@
 
 .all_data{
   display: grid;
-  grid-template-columns: 250px repeat(2, minmax(100px, 1fr)) 1fr;
+  grid-template-columns: 250px repeat(3, 1fr);
   grid-template-rows: 200px 170px;
   grid-template-areas:
   'ava person person saveImage'
@@ -25,6 +25,35 @@
 
   }
 
+  .friend-border{
+    max-width: 250px;
+    padding: 1rem;
+    position: relative;
+    background: linear-gradient(to right, red, purple);
+    padding: 3px;
+    border-radius: 10px;
+  }
+
+  .friend{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #EAFAF1;
+    border-radius: 7px;
+    // box-shadow: -2px 2px 10px 2px #C0C3C2;
+    .friendAvatar{
+      width: 100px;
+      border-radius: 50%;
+    }
+
+  }
+
+  .friend-border:hover{
+    transform: scale(1.1);
+  }
+
   .friends{
     width: 100%;
     height: calc(100% - 20px);
@@ -34,7 +63,7 @@
     top: 10px;
     right: 0;
     z-index: 5;
-    background-color: lightgreen;;
+    background-color: #C5F6EC;
     clip-path: url('#clipFriends');
     overflow-y: auto;
     .friendsTitle{
@@ -113,14 +142,14 @@ svg{
   height: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items:flex-start;
+  justify-content:center;
+  align-items:center;
   height: 200px;
-  padding-left: 10px;
-  @media screen and (max-width: 1025px){
-    justify-content: center;
+  padding-top: 10px;
+  box-sizing: border-box;
+  @media screen and (max-width: 940px){
+    border-radius: 0 20px 20px 0;
   }
-
 }
 
 .person-image-block{
@@ -147,6 +176,13 @@ svg{
     font-size: 2vw;
     text-align:center;
   }
+  @media screen and (max-width: 940px){
+    border-radius: 0 20px 20px 0;
+    height: 160px;
+    margin: 10px auto 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+  }
 }
 
 .images{
@@ -156,7 +192,7 @@ svg{
   border-radius: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   overflow: hidden;
   padding: 10px;
@@ -167,14 +203,25 @@ svg{
     width: 200px;
     margin: 0 5px;
   }
+  @media screen and (max-width: 940px){
+    border-radius: 10px 0 0 10px;
+  }
 }
+@media screen and (max-width: 940px){
+  grid-template-areas:
+  'ava person person person'
+  'image image image saveImage';
+  }
 }
+
+
 
 .images_popup{
 display: flex;
 flex-direction: row;
 flex-wrap: wrap;
 justify-content: center;
+align-items: center;
 width: 60%;
 height: 60%;
 opacity: 0;

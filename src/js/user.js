@@ -35,17 +35,17 @@ $(document).ready(function() {
     })
   }
 
-  let currentUserLogin = getCookie('userLogin');
-  let pageOwner = $('.login').data('login');
-  let avatarBtn = $('.avaBtnStyle');
-  if(currentUserLogin == pageOwner) {
-    getFriends(currentUserLogin);
-  } else {
-    let friendsArray = JSON.parse(localStorage.getItem('friends'));
-    if(friendsArray.includes(pageOwner)){
-      avatarBtn.html('Удалить из друзей');
-    }
-  }
+  // let currentUserLogin = getCookie('userLogin');
+  // let pageOwner = $('.login').data('login');
+  // let avatarBtn = $('.avaBtnStyle');
+  // if(currentUserLogin == pageOwner) {
+  //   getFriends(currentUserLogin);
+  // } else {
+  //   let friendsArray = JSON.parse(localStorage.getItem('friends'));
+  //   if(friendsArray.includes(pageOwner)){
+  //     avatarBtn.html('Удалить из друзей');
+  //   }
+  // }
 
 
   $('.images > img').dblclick(function(){
