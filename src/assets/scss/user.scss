@@ -1,7 +1,6 @@
-.content{
-  background-image: url('/assets/images/for_user.jpg') !important;
+.box{
+  background-image: url('/assets/images/for_user.jpg');
   background-position: center;
-  border: 1px solid black;
 }
 
 .all_data{
@@ -45,7 +44,7 @@
     // box-shadow: -2px 2px 10px 2px #C0C3C2;
     .friendAvatar{
       width: 100px;
-      border-radius: 50%;
+      border-radius: 10%;
     }
 
   }
@@ -214,8 +213,6 @@ svg{
   }
 }
 
-
-
 .images_popup{
 display: flex;
 flex-direction: row;
@@ -254,9 +251,6 @@ box-sizing: border-box;
   border-radius: 10px;
 }
 
-
-
-
   .cross{
     width: 20px;
     height: 20px;
@@ -277,7 +271,7 @@ box-sizing: border-box;
 
 .user_text{
   width: 80%;
-  margin: auto;
+  margin: 20px auto;
   text-align: justify;
 }
 
